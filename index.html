@@ -28,8 +28,6 @@
             margin-bottom: 15px;
         }
         label {
-            display: block;
-            margin-bottom: 5px;
             font-weight: bold;
         }
         input, textarea {
@@ -49,6 +47,16 @@
             border-radius: 5px;
             background: #f9f9f9;
             margin-bottom: 15px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
         }
         button {
             background-color: #28a745;
@@ -143,7 +151,7 @@
             let selezionati = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
                                    .map(cb => cb.value);
 
-            let testo = `Oggetto: Richiesta cancellazione dati personali\n\n`;
+            let testo = `Oggetto: Richiesta cancellazione dati personali - ${nome} ${cognome} - ${codiceFiscale}\n\n`;
             testo += `Spett.le società,\n\n`;
             testo += `Con la presente, in conformità al Regolamento (UE) 2016/679 (GDPR), chiedo la cancellazione immediata di tutti i miei dati personali dai vostri sistemi, inclusi quelli ceduti a terze parti.\n\n`;
             testo += `Dati dell'interessato:\nNome: ${nome} ${cognome}\nCodice Fiscale: ${codiceFiscale}\nEmail: ${email}\nTelefono: ${telefono}\n\n`;
