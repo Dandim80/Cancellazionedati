@@ -10,7 +10,6 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
-            text-align: center;
         }
         .container {
             max-width: 600px;
@@ -21,10 +20,10 @@
             margin: auto;
         }
         h2 {
+            text-align: center;
             color: #333;
         }
         .form-group {
-            text-align: left;
             margin-bottom: 15px;
         }
         label {
@@ -40,7 +39,7 @@
         }
         .checkbox-group {
             text-align: left;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             border: 1px solid #ccc;
             padding: 10px;
@@ -59,17 +58,18 @@
             height: 18px;
         }
         button {
-            background-color: #28a745;
+            width: 100%;
+            background-color: #007bff;
             color: white;
-            padding: 10px 20px;
+            padding: 10px;
             font-size: 18px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 5px;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
         #testoEmail {
             height: 150px;
@@ -80,31 +80,12 @@
 </head>
 <body>
     <div class="container">
-        <h2>Richiesta di Cancellazione Dati Personali</h2>
+        <h2>Richiesta di Cancellazione Dati</h2>
 
         <div class="form-group">
             <label>Seleziona le compagnie</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" value="info@eniplenitude.com"> Eni Plenitude</label>
-                <label><input type="checkbox" value="info@enel.com"> Enel Energia</label>
-                <label><input type="checkbox" value="info@edison.it"> Edison Energia</label>
-                <label><input type="checkbox" value="info@a2a.eu"> A2A Energia</label>
-                <label><input type="checkbox" value="info@gruppohera.it"> Hera Comm</label>
-                <label><input type="checkbox" value="info@irenmercato.it"> Iren Mercato</label>
-                <label><input type="checkbox" value="info@acea.it"> Acea Energia</label>
-                <label><input type="checkbox" value="info@eon-italia.com"> E.ON Energia</label>
-                <label><input type="checkbox" value="info@sorgenia.it"> Sorgenia</label>
-                <label><input type="checkbox" value="info@engie.it"> Engie Italia</label>
-                <label><input type="checkbox" value="info@illumia.it"> Illumia</label>
-                <label><input type="checkbox" value="info@dolomitienergia.it"> Dolomiti Energia</label>
-                <label><input type="checkbox" value="info@gruppoestra.com"> Estra Energie</label>
-                <label><input type="checkbox" value="info@greennetworkenergy.it"> Green Network Energy</label>
-                <label><input type="checkbox" value="info@iberdrola.it"> Iberdrola Italia</label>
-                <label><input type="checkbox" value="info@optimaitalia.com"> Optima Italia</label>
-                <label><input type="checkbox" value="info@wekiwi.it"> Wekiwi</label>
-                <label><input type="checkbox" value="info@bluenergygroup.it"> Bluenergy Group</label>
-                <label><input type="checkbox" value="info@alperia.eu"> Alperia</label>
-                <label><input type="checkbox" value="info@agsm.it"> Agsm Energia</label>
+            <div class="checkbox-group" id="compagnie-list">
+                <!-- Checkbox generati dinamicamente -->
             </div>
         </div>
 
@@ -128,52 +109,78 @@
             <input type="email" id="email">
         </div>
 
-        <div class="form-group">
-            <label>Telefono</label>
-            <input type="text" id="telefono">
-        </div>
-
         <h3>Testo Email</h3>
         <textarea id="testoEmail" readonly></textarea>
 
         <button onclick="generaEmail()">Genera Email</button>
-        <button onclick="copiaTesto()">Copia Testo</button>
         <button onclick="inviaEmail()">Apri Email</button>
     </div>
 
     <script>
+        const compagnie = [
+            { nome: "Eni Plenitude", email: "dpo@eniplenitude.com" },
+            { nome: "Enel Energia", email: "dpo@enel.com" },
+            { nome: "Edison Energia", email: "dpo@edison.it" },
+            { nome: "A2A Energia", email: "dpo@a2a.eu" },
+            { nome: "Hera Comm", email: "dpo@gruppohera.it" },
+            { nome: "Iren Mercato", email: "dpo@irenmercato.it" },
+            { nome: "Acea Energia", email: "dpo@acea.it" },
+            { nome: "E.ON Energia", email: "dpo@eon-italia.com" },
+            { nome: "Sorgenia", email: "dpo@sorgenia.it" },
+            { nome: "Engie Italia", email: "dpo@engie.it" },
+            { nome: "Illumia", email: "dpo@illumia.it" },
+            { nome: "Dolomiti Energia", email: "dpo@dolomitienergia.it" },
+            { nome: "Estra Energie", email: "dpo@gruppoestra.com" },
+            { nome: "Green Network Energy", email: "dpo@greennetworkenergy.it" },
+            { nome: "Iberdrola Italia", email: "dpo@iberdrola.it" },
+            { nome: "Optima Italia", email: "dpo@optimaitalia.com" },
+            { nome: "Wekiwi", email: "dpo@wekiwi.it" },
+            { nome: "Bluenergy Group", email: "dpo@bluenergygroup.it" },
+            { nome: "Alperia", email: "dpo@alperia.eu" },
+            { nome: "Agsm Energia", email: "dpo@agsm.it" }
+        ];
+
+        function caricaCompagnie() {
+            let container = document.getElementById("compagnie-list");
+            compagnie.forEach(compagnia => {
+                let label = document.createElement("label");
+                label.innerHTML = `<input type="checkbox" value="${compagnia.email}"> ${compagnia.nome}`;
+                container.appendChild(label);
+            });
+        }
+
         function generaEmail() {
             let nome = document.getElementById("nome").value;
             let cognome = document.getElementById("cognome").value;
             let codiceFiscale = document.getElementById("codiceFiscale").value;
             let email = document.getElementById("email").value;
-            let telefono = document.getElementById("telefono").value;
-            let selezionati = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-                                   .map(cb => cb.value);
+            let selezionati = Array.from(document.querySelectorAll(".checkbox-group input:checked"))
+                                   .map(input => input.value);
 
-            let testo = `Oggetto: Richiesta cancellazione dati personali - ${nome} ${cognome} - ${codiceFiscale}\n\n`;
-            testo += `Spett.le società,\n\n`;
-            testo += `Con la presente, in conformità al Regolamento (UE) 2016/679 (GDPR), chiedo la cancellazione immediata di tutti i miei dati personali dai vostri sistemi, inclusi quelli ceduti a terze parti.\n\n`;
-            testo += `Dati dell'interessato:\nNome: ${nome} ${cognome}\nCodice Fiscale: ${codiceFiscale}\nEmail: ${email}\nTelefono: ${telefono}\n\n`;
-            testo += `Voglio inoltre essere rimosso da qualsiasi lista di telemarketing, diretto e indiretto. Vi invito a confermare per iscritto l’avvenuta cancellazione entro i tempi previsti dalla legge.\n\nCordiali saluti,\n${nome} ${cognome}`;
+            let testo = `Oggetto: Richiesta cancellazione dati - ${nome} ${cognome} (${codiceFiscale})
+
+Spett.le Azienda,
+
+con la presente, ai sensi del Regolamento UE 2016/679 (GDPR), chiedo la cancellazione immediata di tutti i miei dati personali in vostro possesso. Inoltre, richiedo che i miei dati siano cancellati anche presso terze parti con cui avete condiviso le informazioni, e che non siano utilizzati per finalità di marketing né per contatti telefonici da call center diretti o indiretti.
+
+Distinti saluti,
+${nome} ${cognome}
+Email: ${email}`;
 
             document.getElementById("testoEmail").value = testo;
-            document.getElementById("testoEmail").setAttribute("data-email", selezionati.join(","));
-        }
-
-        function copiaTesto() {
-            let testoEmail = document.getElementById("testoEmail");
-            testoEmail.select();
-            document.execCommand("copy");
-            alert("Testo copiato negli appunti.");
         }
 
         function inviaEmail() {
-            let destinatario = document.getElementById("email").value;
-            let bcc = document.getElementById("testoEmail").getAttribute("data-email");
-            let corpo = encodeURIComponent(document.getElementById("testoEmail").value);
-            window.location.href = `mailto:${destinatario}?bcc=${bcc}&body=${corpo}`;
+            let emailCliente = document.getElementById("email").value;
+            let selezionati = Array.from(document.querySelectorAll(".checkbox-group input:checked"))
+                                   .map(input => input.value)
+                                   .join(",");
+
+            let mailtoLink = `mailto:${emailCliente}?bcc=${selezionati}&subject=Richiesta%20cancellazione%20dati&body=${encodeURIComponent(document.getElementById("testoEmail").value)}`;
+            window.location.href = mailtoLink;
         }
+
+        window.onload = caricaCompagnie;
     </script>
 </body>
-</html>
+</html> 
