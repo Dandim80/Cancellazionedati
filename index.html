@@ -3,44 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richiesta di Cancellazione Dati Personali</title>
+    <title>Richiesta Cancellazione Dati</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .checkbox-group {
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #testoEmail {
+            height: 150px;
+            resize: none;
+            background: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
-    <h2>Seleziona le compagnie a cui inviare la richiesta</h2>
-    <label><input type="checkbox" value="info@eniplenitude.com"> Eni Plenitude</label><br>
-    <label><input type="checkbox" value="info@enel.com"> Enel Energia</label><br>
-    <label><input type="checkbox" value="info@edison.it"> Edison Energia</label><br>
-    <label><input type="checkbox" value="info@a2a.eu"> A2A Energia</label><br>
-    <label><input type="checkbox" value="info@gruppohera.it"> Hera Comm</label><br>
-    <label><input type="checkbox" value="info@irenmercato.it"> Iren Mercato</label><br>
-    <label><input type="checkbox" value="info@acea.it"> Acea Energia</label><br>
-    <label><input type="checkbox" value="info@eon-italia.com"> E.ON Energia</label><br>
-    <label><input type="checkbox" value="info@sorgenia.it"> Sorgenia</label><br>
-    <label><input type="checkbox" value="info@engie.it"> Engie Italia</label><br>
-    <label><input type="checkbox" value="info@illumia.it"> Illumia</label><br>
-    <label><input type="checkbox" value="info@dolomitienergia.it"> Dolomiti Energia</label><br>
-    <label><input type="checkbox" value="info@gruppoestra.com"> Estra Energie</label><br>
-    <label><input type="checkbox" value="info@greennetworkenergy.it"> Green Network Energy</label><br>
-    <label><input type="checkbox" value="info@iberdrola.it"> Iberdrola Italia</label><br>
-    <label><input type="checkbox" value="info@optimaitalia.com"> Optima Italia</label><br>
-    <label><input type="checkbox" value="info@wekiwi.it"> Wekiwi</label><br>
-    <label><input type="checkbox" value="info@bluenergygroup.it"> Bluenergy Group</label><br>
-    <label><input type="checkbox" value="info@alperia.eu"> Alperia</label><br>
-    <label><input type="checkbox" value="info@agsm.it"> Agsm Energia</label><br>
+    <div class="container">
+        <h2>Richiesta di Cancellazione Dati Personali</h2>
 
-    <h2>I tuoi dati</h2>
-    <input type="text" id="nome" placeholder="Nome"><br>
-    <input type="text" id="cognome" placeholder="Cognome"><br>
-    <input type="text" id="codiceFiscale" placeholder="Codice Fiscale"><br>
-    <input type="email" id="email" placeholder="Tua email"><br>
-    <input type="text" id="telefono" placeholder="Tuo telefono"><br>
+        <div class="form-group">
+            <label>Seleziona le compagnie</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" value="info@eniplenitude.com"> Eni Plenitude</label>
+                <label><input type="checkbox" value="info@enel.com"> Enel Energia</label>
+                <label><input type="checkbox" value="info@edison.it"> Edison Energia</label>
+                <label><input type="checkbox" value="info@a2a.eu"> A2A Energia</label>
+                <label><input type="checkbox" value="info@gruppohera.it"> Hera Comm</label>
+                <label><input type="checkbox" value="info@irenmercato.it"> Iren Mercato</label>
+                <label><input type="checkbox" value="info@acea.it"> Acea Energia</label>
+                <label><input type="checkbox" value="info@eon-italia.com"> E.ON Energia</label>
+                <label><input type="checkbox" value="info@sorgenia.it"> Sorgenia</label>
+                <label><input type="checkbox" value="info@engie.it"> Engie Italia</label>
+                <label><input type="checkbox" value="info@illumia.it"> Illumia</label>
+                <label><input type="checkbox" value="info@dolomitienergia.it"> Dolomiti Energia</label>
+                <label><input type="checkbox" value="info@gruppoestra.com"> Estra Energie</label>
+                <label><input type="checkbox" value="info@greennetworkenergy.it"> Green Network Energy</label>
+                <label><input type="checkbox" value="info@iberdrola.it"> Iberdrola Italia</label>
+                <label><input type="checkbox" value="info@optimaitalia.com"> Optima Italia</label>
+                <label><input type="checkbox" value="info@wekiwi.it"> Wekiwi</label>
+                <label><input type="checkbox" value="info@bluenergygroup.it"> Bluenergy Group</label>
+                <label><input type="checkbox" value="info@alperia.eu"> Alperia</label>
+                <label><input type="checkbox" value="info@agsm.it"> Agsm Energia</label>
+            </div>
+        </div>
 
-    <h2>Testo email generato</h2>
-    <textarea id="testoEmail" rows="6" readonly></textarea><br>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="nome">
+        </div>
 
-    <button onclick="generaEmail()">Genera Email</button>
-    <button onclick="copiaTesto()">Copia Testo</button>
-    <button onclick="inviaEmail()">Apri Email</button>
+        <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" id="cognome">
+        </div>
+
+        <div class="form-group">
+            <label>Codice Fiscale</label>
+            <input type="text" id="codiceFiscale">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label>Telefono</label>
+            <input type="text" id="telefono">
+        </div>
+
+        <h3>Testo Email</h3>
+        <textarea id="testoEmail" readonly></textarea>
+
+        <button onclick="generaEmail()">Genera Email</button>
+        <button onclick="copiaTesto()">Copia Testo</button>
+        <button onclick="inviaEmail()">Apri Email</button>
+    </div>
 
     <script>
         function generaEmail() {
@@ -52,11 +143,11 @@
             let selezionati = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
                                    .map(cb => cb.value);
 
-            let testo = `Oggetto: Richiesta di cancellazione dati personali\n\n`;
+            let testo = `Oggetto: Richiesta cancellazione dati personali\n\n`;
             testo += `Spett.le società,\n\n`;
-            testo += `Con la presente, in conformità al Regolamento (UE) 2016/679 (GDPR), chiedo la cancellazione dei miei dati personali.\n\n`;
+            testo += `Con la presente, in conformità al Regolamento (UE) 2016/679 (GDPR), chiedo la cancellazione immediata di tutti i miei dati personali dai vostri sistemi, inclusi quelli ceduti a terze parti.\n\n`;
             testo += `Dati dell'interessato:\nNome: ${nome} ${cognome}\nCodice Fiscale: ${codiceFiscale}\nEmail: ${email}\nTelefono: ${telefono}\n\n`;
-            testo += `Vi prego di confermare l’avvenuta cancellazione nei tempi previsti dalla normativa.\n\nCordiali saluti,\n${nome} ${cognome}`;
+            testo += `Voglio inoltre essere rimosso da qualsiasi lista di telemarketing, diretto e indiretto. Vi invito a confermare per iscritto l’avvenuta cancellazione entro i tempi previsti dalla legge.\n\nCordiali saluti,\n${nome} ${cognome}`;
 
             document.getElementById("testoEmail").value = testo;
             document.getElementById("testoEmail").setAttribute("data-email", selezionati.join(","));
@@ -73,17 +164,7 @@
             let destinatario = document.getElementById("email").value;
             let bcc = document.getElementById("testoEmail").getAttribute("data-email");
             let corpo = encodeURIComponent(document.getElementById("testoEmail").value);
-
-            if (!destinatario) {
-                alert("Inserisci la tua email nel campo apposito.");
-                return;
-            }
-            if (!bcc) {
-                alert("Seleziona almeno una compagnia.");
-                return;
-            }
-
-            window.location.href = `mailto:${destinatario}?bcc=${bcc}&subject=Richiesta cancellazione dati&body=${corpo}`;
+            window.location.href = `mailto:${destinatario}?bcc=${bcc}&body=${corpo}`;
         }
     </script>
 </body>
