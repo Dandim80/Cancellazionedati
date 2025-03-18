@@ -1,0 +1,90 @@
+ <!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richiesta di Cancellazione Dati Personali</title>
+</head>
+<body>
+    <h2>Seleziona le compagnie a cui inviare la richiesta</h2>
+    <label><input type="checkbox" value="info@eniplenitude.com"> Eni Plenitude</label><br>
+    <label><input type="checkbox" value="info@enel.com"> Enel Energia</label><br>
+    <label><input type="checkbox" value="info@edison.it"> Edison Energia</label><br>
+    <label><input type="checkbox" value="info@a2a.eu"> A2A Energia</label><br>
+    <label><input type="checkbox" value="info@gruppohera.it"> Hera Comm</label><br>
+    <label><input type="checkbox" value="info@irenmercato.it"> Iren Mercato</label><br>
+    <label><input type="checkbox" value="info@acea.it"> Acea Energia</label><br>
+    <label><input type="checkbox" value="info@eon-italia.com"> E.ON Energia</label><br>
+    <label><input type="checkbox" value="info@sorgenia.it"> Sorgenia</label><br>
+    <label><input type="checkbox" value="info@engie.it"> Engie Italia</label><br>
+    <label><input type="checkbox" value="info@illumia.it"> Illumia</label><br>
+    <label><input type="checkbox" value="info@dolomitienergia.it"> Dolomiti Energia</label><br>
+    <label><input type="checkbox" value="info@gruppoestra.com"> Estra Energie</label><br>
+    <label><input type="checkbox" value="info@greennetworkenergy.it"> Green Network Energy</label><br>
+    <label><input type="checkbox" value="info@iberdrola.it"> Iberdrola Italia</label><br>
+    <label><input type="checkbox" value="info@optimaitalia.com"> Optima Italia</label><br>
+    <label><input type="checkbox" value="info@wekiwi.it"> Wekiwi</label><br>
+    <label><input type="checkbox" value="info@bluenergygroup.it"> Bluenergy Group</label><br>
+    <label><input type="checkbox" value="info@alperia.eu"> Alperia</label><br>
+    <label><input type="checkbox" value="info@agsm.it"> Agsm Energia</label><br>
+
+    <h2>I tuoi dati</h2>
+    <input type="text" id="nome" placeholder="Nome"><br>
+    <input type="text" id="cognome" placeholder="Cognome"><br>
+    <input type="text" id="codiceFiscale" placeholder="Codice Fiscale"><br>
+    <input type="email" id="email" placeholder="Tua email"><br>
+    <input type="text" id="telefono" placeholder="Tuo telefono"><br>
+
+    <h2>Testo email generato</h2>
+    <textarea id="testoEmail" rows="6" readonly></textarea><br>
+
+    <button onclick="generaEmail()">Genera Email</button>
+    <button onclick="copiaTesto()">Copia Testo</button>
+    <button onclick="inviaEmail()">Apri Email</button>
+
+    <script>
+        function generaEmail() {
+            let nome = document.getElementById("nome").value;
+            let cognome = document.getElementById("cognome").value;
+            let codiceFiscale = document.getElementById("codiceFiscale").value;
+            let email = document.getElementById("email").value;
+            let telefono = document.getElementById("telefono").value;
+            let selezionati = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                   .map(cb => cb.value);
+
+            let testo = `Oggetto: Richiesta di cancellazione dati personali\n\n`;
+            testo += `Spett.le società,\n\n`;
+            testo += `Con la presente, in conformità al Regolamento (UE) 2016/679 (GDPR), chiedo la cancellazione dei miei dati personali.\n\n`;
+            testo += `Dati dell'interessato:\nNome: ${nome} ${cognome}\nCodice Fiscale: ${codiceFiscale}\nEmail: ${email}\nTelefono: ${telefono}\n\n`;
+            testo += `Vi prego di confermare l’avvenuta cancellazione nei tempi previsti dalla normativa.\n\nCordiali saluti,\n${nome} ${cognome}`;
+
+            document.getElementById("testoEmail").value = testo;
+            document.getElementById("testoEmail").setAttribute("data-email", selezionati.join(","));
+        }
+
+        function copiaTesto() {
+            let testoEmail = document.getElementById("testoEmail");
+            testoEmail.select();
+            document.execCommand("copy");
+            alert("Testo copiato negli appunti.");
+        }
+
+        function inviaEmail() {
+            let destinatario = document.getElementById("email").value;
+            let bcc = document.getElementById("testoEmail").getAttribute("data-email");
+            let corpo = encodeURIComponent(document.getElementById("testoEmail").value);
+
+            if (!destinatario) {
+                alert("Inserisci la tua email nel campo apposito.");
+                return;
+            }
+            if (!bcc) {
+                alert("Seleziona almeno una compagnia.");
+                return;
+            }
+
+            window.location.href = `mailto:${destinatario}?bcc=${bcc}&subject=Richiesta cancellazione dati&body=${corpo}`;
+        }
+    </script>
+</body>
+</html>
